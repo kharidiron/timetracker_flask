@@ -1,0 +1,2 @@
+$('#start').timepicker();
+$('#stop').timepicker();

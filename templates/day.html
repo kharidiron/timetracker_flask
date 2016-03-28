@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+    {% block content %}
+      <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row row-list">
+              <div class="col-xs-1">
+                <button type="submit" class="btn btn-xs">
+                  <a href="/tracker/{{ prev }}"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a>
+                </button>
+              </div>
+              <div class="col-xs-10">
+                <p class="text-center">
+                  <strong><a href="/tracker/{{ year }}/{{ month }}">{{ d_month }} {{ day }}</a>, <a href="/tracker/{{ year }}">{{ year }}</a></strong>
+                </p>
+              </div>
+              <div class="col-xs-1">
+                <button type="submit" class="btn btn-xs pull-right">
+                  <a href="/tracker/{{ next }}"><span class="sr-only">Next</span><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid">
+            {% from "_formhelpers.html" import render_field %}
+            <form class="form-inline" method="POST">
+
+              <div class="col-xs-2">
+              <label for="start" class="control-label">Start Time</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                  {{ render_field(form.start, class="form-control input-small") }}
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+              </div>
+
+              <div class="col-xs-2">
+              <label for="stop" class="control-label">Stop Time</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                  {{ render_field(form.stop, class="form-control input-small") }}
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+              </div>
+
+              <div class="col-xs-8">
+              <label for="task" class="control-label">Task</label>
+                <div class="input-group col-xs-12">
+                  {{ render_field(form.task, class="form-control input-small") }}
+                  <span class="input-group-btn">
+                    <button type="submit" name="add" class="btn btn-primary">Add</button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="col-xs-2"></th>
+                <th class="col-xs-2"></th>
+                <th class="col-xs-6"></th>
+                <th class="col-xs-1"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for entry in entries %}
+              <tr>
+                <td>{{ entry['start'] }}</td>
+                <td>{{ entry['stop'] }}</td>
+                <td>{{ entry['task'] }}</td>
+                <td>
+                  <form method="POST">
+                    <button type="submit" name="delete" id="delete" value="{{ entry['id'] }}" class="btn btn-xs btn-danger pull-right">
+                      <span class="sr-only">Delete</span><span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    {% endblock content %}

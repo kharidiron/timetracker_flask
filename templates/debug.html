@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+    {% block content %}
+      <div class="container">
+        <h1>Debug</h1>
+
+        {{ stuff }}
+
+        <hr />
+
+        {% for line in stuff %}
+        {{ line }}
+        {% endfor %}
+
+      </div>
+    {% endblock content %}
