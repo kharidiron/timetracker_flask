@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source ~/.bashrc
+source ~/Workspace/PycharmVEnvs/timetracker_flask/bin/activate

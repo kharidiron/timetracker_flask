@@ -1,0 +1,11 @@
+.form-control {
+    padding: 6px;
+}
+
+.input-group-addon {
+    padding: 6px;
+}
+
+.input-group-addon, .input-group-btn {
+    width: 1%;
+}
